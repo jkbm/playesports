@@ -1,0 +1,151 @@
+{% extends 'hsapp/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/match.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+    var p1 = $(".match_pic");
+    p1.fadeIn(3000);
+    $(".game").click(function(){
+      $(this)
+        .find(".game-info").slideToggle("slow");
+    });
+    $('#likes').click(function(){
+      var pk;
+      pk = $(this).attr("data-matchpk");
+      $.get('{% url "hs:like_match" %}', {match_pk: pk}, function(data){
+                $('#like_count').html(data);
+                $('#likes').hide();
+      });
+    });
+    $(".portrait").hover(function(){
+        $(".deckboard").css("background-color", "darkblue");
+        }, function(){
+        $(".deckboard").css("background-color", "lightblue");
+    });
+});
+</script>
+<style> 
+    .gameinfo,.game {
+        padding: 5px;
+        text-align: center;
+        margin: 0 auto;
+        width: 15%;
+        border-radius: 6px;
+    }
+    
+    .game-info {
+        padding: 50px;
+        display: none;
+        color: black;
+    }
+    .game:hover{
+      background: lightcyan;
+    }
+    .decks{
+      padding-top: 20px;
+    }
+    .deckboard{
+      background-color: lightblue;
+      border: 2px solid black;
+      border-radius: 4px;
+      width: 180px;
+      margin: 0 auto;
+    }
+    .thumbnail {
+      margin: 0 auto;
+      position: relative;
+      width: 130px;
+      height: 50px;
+      overflow: hidden;
+    }
+    .thumbnail img {
+      position: absolute;
+      left: 50%;
+      width: auto;
+      -webkit-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+              transform: translate(-50%,-50%);
+    }
+    .portrait {
+      width: 35px;
+    }
+</style>
+
+<div class='match'>
+<h1> {{ match }} </h1> 
+<h2> {{ match.stage }} </h2>
+<h5><a href="{% url 'hs:tournament_detail' pk=match.tournament.pk %}">Back to the tournament page.</a></h5>
+<div class="row">
+  <div class="col-sm-5 player1">
+    <h2>{{ match.player1 }}</h2>
+    <a href="{% url 'hs:player_detail' pk=match.player1.pk %}">
+    <img class='match_pic' style='display:none;' src='{{ MEDIA_URL }}/media/{{ match.player1.image }}' alt='Player`s photo'>
+    </a>
+    <div class="decks">
+      <h4> Decklists: </h4>
+      <div class="deckboard">
+      {% for deck in decks1 %}
+          <a href="{{ MEDIA_URL }}/media/{{ deck.image }}"><img src="{{ MEDIA_URL }}/media/classes/{{ deck.deck_class|lower }}.png" class="portrait" alt="Image" /></a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <h2>VS</h2>
+    <br>
+    <h3>{{ match.score }}</h3>
+    <br>
+    <h4>{{ match.date }}
+    <br>
+    <p>
+    <button type="button" data-matchpk="{{ match.pk }}" class="btn btn-mini btn-default" id="likes">Like</button>
+    <h4  id="like_count">{{ match.likes }} likes</h4>
+    </p>
+  </div>
+  <div class="col-sm-5 player2">
+    <h2>{{ match.player2 }}</h2>
+    <a href="{% url 'hs:player_detail' pk=match.player2.pk %}">
+    <img class='match_pic' style='display:none' src='{{ MEDIA_URL }}/media/{{ match.player2.image }}' alt='Player`s photo'></a>
+    </a>
+    <div class="decks">
+      <h4> Decklists: </h4>
+      <div class="deckboard">
+      {% for deck in decks2 %}
+            <a href="{{ MEDIA_URL }}/media/{{ deck.image }}"><img src="{{ MEDIA_URL }}/media/classes/{{ deck.deck_class|lower }}.png" class="portrait" alt="Image" /></a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-sm-4"> 
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+    </div>
+  </div>
+{% for game in games %}
+  <div class='game'>
+    {% if game.winner == game.player1 %}
+    <div class="row">
+      <div class="col-sm-6 winner leftc"><img src='{{ MEDIA_URL }}/media/classes/{{ game.class1 }}.png'></div>
+      <div class="col-sm-6 rightc"><img src='{{ MEDIA_URL }}/media/classes/{{ game.class2 }}.png'></div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col-sm-6 leftc"><img src='{{ MEDIA_URL }}/media/classes/{{ game.class1 }}.png'></div>
+      <div class="col-sm-6 winner rightc"><img src='{{ MEDIA_URL }}/media/classes/{{ game.class2 }}.png'></div>
+    </div>
+    {% endif %}
+    <div class='game-info'>Game info here</div>
+  </div>
+{% endfor %}
+{% if user.is_authenticated %}
+<a href="{% url 'hs:game_add' match=match.pk %}">Add games <span class="glyphicon glyphicon-pencil"></span> </a> 
+{% endif %}
+</div>
+
+{% endblock %}

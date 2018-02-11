@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Comming Christmass 2002</title>
+    </head>
+    <style>
+        body{
+            background: #35f4e1;
+            margin: auto;
+            width: 70%;
+            padding-top: 10%;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+    <script>
+        function init() {
+            document.getElementById("p").style.fontSize = getRandomSize();
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+            }
+        function getRandomSize() {
+            var max = 64;
+            var min = 16;
+            var rand = Math.floor(Math.random() * (max - min + 1)) + min;
+            return rand;
+        }
+    </script>
+<body onload="document.body.style.backgroundColor = init();">
+<h1>Under Construction</h1>
+{% if user.is_authenticated %}
+<img style='width:300px' src="{{ MEDIA_URL }}/media/fun/DunderMifflinLogo.jpg"><br>
+{% endif %}
+<img src="{{ MEDIA_URL }}/media/fun/dunder_mifflin_jackhammer.gif">
+<p id='p'>Coming <b>C</b>hristma<b>s</b> <u>2002</u>!</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'hsapp/base.html' %}
+
+{% block content %}
+    <style>
+        form {
+            color: black;
+        }
+    </style>
+    <h1>New game</h1>
+    <form method="POST" class="game-form">{% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit" class="save btn btn-default" name='save'>Save</button>
+        <button type="submit" class="btn btn-primary" name="add-more">Save and add another one</button>
+    </form>
+{% endblock %}

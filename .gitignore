@@ -1,0 +1,15 @@
+*.pyc
+*~
+__pycache__
+virenv
+///db.sqlite3
+///static
+.DS_Store
+esports/local_settings.py
+/esports/media/cards
+/esports/media/hsapp
+*.sqlite3
+users.txt
+/htmlcov
+.coverage
+*.json

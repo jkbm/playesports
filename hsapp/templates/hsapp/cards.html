@@ -1,0 +1,45 @@
+{% extends 'hsapp/base.html' %}
+{% block content %}
+<style>
+    body{
+        background: -webkit-linear-gradient(left top, #6600cc, black); /* For Safari 5.1 to 6.0 */
+        background: -moz-linear-gradient(bottom right, #6600cc, black); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, #6600cc, black); /* Standard syntax */
+      
+    }
+    .cards-all{
+        text-align: center;
+        margin: 0 auto;
+        align-content: center;
+        padding: 3%;
+    }
+    .cardimg{
+        max-width: 200px;
+        display: inline-block;
+    }
+    .Epic:hover{
+        -webkit-filter: drop-shadow(8px 8px 6px #a532cb);
+        filter: drop-shadow(8px 8px 6px #a532cb);
+    }
+    .Rare:hover{
+        -webkit-filter: drop-shadow(8px 8px 6px #2b72d3);
+        filter: drop-shadow(8px 8px 6px #2b72d3);
+    }
+    .Legendary:hover{
+        -webkit-filter: drop-shadow(8px 8px 6px #ffad0f);
+        filter: drop-shadow(8px 8px 6px #ffad0f);
+    }
+</style>
+<div class='cards-all'>
+    {% for key, class in cards.items %}
+        <div class='class'>
+                <h1> {{ key }} </h1>
+        {% for key2, rarity in class.items %}
+                {% for card in rarity%}
+                     <img class='cardimg {{ card.rarity }}' src="{{ MEDIA_URL }}/media/{{ card.image }}">
+            {% endfor %}
+        {% endfor %}
+        </div>
+    {% endfor %}
+    
+{% endblock %}

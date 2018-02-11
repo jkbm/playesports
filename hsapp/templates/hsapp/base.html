@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <title>Esports world</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">      
+        <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico'%}"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->     
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/ad4f6e3394.js"></script> 
+        <!-- Fonts -->
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Abril+Fatface&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <!-- Losal stylesheets -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/HS.css' %}">
+        <style>
+        h3{
+            margin-top: 15px;
+        }
+        </style>  
+        {% block style %}
+        {% endblock %} 
+    </head>
+<body>
+    <div class="page-header">
+        <div class="logos">
+            <div class='left'><h1><a href="/" >Esports Universe</a></h1></div>
+            <div class='right'><a style = 'text-decoration:none;' href='/hs/'><img class='main-logo' src="{% static 'images/logo-small-914.png' %}"></a></div>
+        </div>
+        <div class='controls'>
+
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-light navbar-inverse bg-primary">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/hs/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/hs/tournament_list/">Tournaments</a></li>
+                <li class="nav-item"><a class="nav-link" href="/hs/players/">Players</a></li>
+                <li class="nav-item dropdown">
+                        <a class="nav-link" class="dropdown-toggle" data-toggle="dropdown">Cards&darr;</a>
+                        <div class="dropdown-menu">
+                            <h6 class="dropdown-header">Standard</h6>
+                            <a class="dropdown-inline" href="/hs/cards/1001">Knights of the Frozen Throne</a>
+                            <a class="dropdown-inline" href="/hs/cards/27">Journey to Un'Goro</a>
+                            <a class="dropdown-inline" href="/hs/cards/25">Mean Streets of Gadgetzan</a>
+                            <a class="dropdown-inline" href="/hs/cards/24">One Night in Karazhan</a>
+                            <a class="dropdown-inline" href="/hs/cards/21">Whispers of the Old Gods</a>
+                            <a class="dropdown-inline" href="/hs/cards/3">Expert</a>
+                            <a class="dropdown-inline" href="/hs/cards/2">Basic</a>
+                            <h6 class="dropdown-header">Wild</h6>
+                            <a class="dropdown-inline" href="/hs/cards/20">League OF Explorers</a>
+                            <a class="dropdown-inline" href="/hs/cards/15">The Grand Tournament</a>
+                            <a class="dropdown-inline" href="/hs/cards/14">Blackrock Mountain</a>
+                            <a class="dropdown-inline" href="/hs/cards/13">Goblins vs Gnomes</a>
+                            <a class="dropdown-inline" href="/hs/cards/12">Naxxramas</a>
+                            <a class="dropdown-inline" href="/hs/cards/4">Hall of Fame</a>
+                        </div>
+                    </li>
+                <li class="nav-item"><a class="nav-link" href="/hs/about/">About</a></li>
+              </ul>
+              <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                    <h4 class="navbar-text">Hello, {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></h4>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'hs:control_panel' %}"><span class="glyphicon glyphicon-edit"></span>Control panel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'hs:players_list' %}"><span class="glyphicon glyphicon-user"></span>Players</a></li>     
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
+                    {% endif %}
+            </ul>
+            <div class="input-group" style="width: 20%">
+                    <span class="input-group-btn">
+                    <button class="btn btn-success my-2 my-sm-0" id="search_button">Search</button>
+                    </span>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="q_field" value="Search">
+            </div>
+          </nav>
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message }}
+                </div>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <div class="content container">
+            {% block content %}
+            {% endblock %}
+    </div>
+
+
+    <script type="text/javascript">
+        document.getElementById("search_button").onclick = function () {
+            location.href = "{% url 'hs:search' %}" + '?query='+document.getElementById('q_field').value;
+        };
+    </script>
+</body>
+</html>
+
+

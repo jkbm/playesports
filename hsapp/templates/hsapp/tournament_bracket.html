@@ -1,0 +1,109 @@
+<html>
+    <head>
+            {% load staticfiles %}
+            <title>Esports world</title>
+            <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico'%}"/>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+            <link href="//fonts.googleapis.com/css?family=Abril+Fatface&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+            <link href="//fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/bracket.css' %}">
+            <style>
+                .link{
+                    background: #7986AC;
+                    color: white;
+                    font-size: 12px;
+                    padding: 1px;
+                }
+            </style>
+    </head>
+<body>
+    <a href="{% url 'hs:tournament_detail' pk=tournament.pk %}"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+    <h1>{{ tournament.title }}</h1>
+    <div class='container'>
+            <div class='info'>
+                {% for group in tabledata %}
+                <h2><a href='{% url "hs:match_list" pk=tournament.pk group=group.0.letter %}'>Group-{{ group.0.letter }}</a></h2>
+                <table class="tg">
+                    <tr>
+                      <th class="tg-yw4l">Player</th>
+                      <th class="tg-yw4l">Record</th>
+                      <th class="tg-yw4l">Result</th>
+                    </tr>
+                    {% for player in group.1 %}
+                    <tr>
+                        <td class="tg-yw4l">{{ player.player }}</td>
+                        <td class="tg-yw4l">{{ player.record }}</td>
+                        <td class="tg-yw4l">{{ player.result }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                  {% endfor %}
+            </div>
+            <div class='bracket'>
+                <div id="tournament">
+                    {% if oneeight %}
+                    <ul class="round round-1">
+                        {% for match in quarterfinals %}
+                        <li class="spacer">&nbsp;</li>              
+                        <li class="game game-top {% if match.player1 == match.winner %}winner{% endif %}">{{ match.player1.name }} <span>{{ match.score1 }}</span></li>
+                        <li class="game game-spacer">&nbsp; <a class="link" href="{% url 'hs:match_detail' pk=match.pk %}"> Match info</a></li>
+                        <li class="game game-bottom {% if match.player2 == match.winner %}winner{% endif %}">{{ match.player2.name }} <span>{{ match.score2 }}</span></li>
+                        {% endfor %}
+                        
+                        {% for x in more.0 %}
+                        <li class="spacer">&nbsp;</li>                     
+                        <li class="game game-top winner"> <span></span></li>
+                        <li class="game game-spacer">&nbsp;</li>
+                        <li class="game game-bottom "> <span></span></li>
+                        {% endfor %}
+                        <li class="spacer">&nbsp;</li>
+                    </ul>
+                    {% endif %}	
+                    {% if quarterfinals %}
+                    <ul class="round round-2">
+                            {% for match in quarterfinals %}
+                            <li class="spacer">&nbsp;</li>              
+                            <li class="game game-top {% if match.player1 == match.winner %}winner{% endif %}">{{ match.player1.name }} <span>{{ match.score1 }}</span></li>
+                            <li class="game game-spacer">&nbsp; <a class="link" href="{% url 'hs:match_detail' pk=match.pk %}">Match info</a></li>
+                            <li class="game game-bottom {% if match.player2 == match.winner %}winner{% endif %}">{{ match.player2.name }} <span>{{ match.score2 }}</span></li>
+                            {% endfor %}
+                            
+                            {% for x in more.1 %}
+                            <li class="spacer">&nbsp;</li>                     
+                            <li class="game game-top">None<span></span></li>
+                            <li class="game game-spacer">&nbsp;</li>
+                            <li class="game game-bottom ">None<span></span></li>                        
+                            {% endfor %}
+                            <li class="spacer">&nbsp;</li>
+                    </ul>
+                    {% endif %}	
+                    {% if semifinals %}
+                    <ul class="round round-3">
+                        {% for match in semifinals %}
+                        <li class="spacer">&nbsp;</li>
+                        
+                        <li class="game game-top {% if match.player1 == match.winner %}winner{% endif %}">{{ match.player1.name }} <span>{{ match.score1 }}</span></li>
+                        <li class="game game-spacer">&nbsp; <a class="link" href="{% url 'hs:match_detail' pk=match.pk %}">Match info</a></li>
+                        <li class="game game-bottom {% if match.player2 == match.winner %}winner{% endif %}">{{ match.player2.name }} <span>{{ match.score2 }}</span></li>
+                        
+                        {% endfor %}
+                        <li class="spacer">&nbsp;</li>
+                    </ul>
+                    {% endif %}	
+                    {% if finals %}
+                    <ul class="round round-4">
+                        <li class="spacer">&nbsp;</li>
+                        <li class="game game-top {% if finals.0.player1 == finals.0.winner %}winner{% endif %}">{{ finals.0.player1.name }} <span>{{ finals.0.score1 }}</span></li>
+                        <li class="game game-spacer">&nbsp; <a class="link" href="{% url 'hs:match_detail' pk=finals.0.pk %}">Match info</a> </li>
+                        <li class="game game-bottom {% if finals.0.player2 == finals.0.winner %}winner{% endif %}">{{ finals.0.player2.name }} <span>{{ finals.0.score2 }}</span></li>
+                        
+                        <li class="spacer">&nbsp;</li>
+                    </ul>
+                    {% endif %}		
+                </div>
+            </div>
+    </div>
+    </body>
+</html>

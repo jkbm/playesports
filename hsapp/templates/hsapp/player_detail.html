@@ -1,0 +1,34 @@
+{% extends 'hsapp/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/player.css' %}">
+<div class="headshot">
+    <h1> {{ player.name }} <img src='{{ player.country.flag }}'></h1>
+    <img class='profile_pic' src='{{ MEDIA_URL }}/media/{{ player.image }}' alt='Player`s photo'>
+    <p class='form'>{% for g in form %}
+        {% ifequal g 'W' %}
+        <span style='color: #00FF00'>{{ g }}</span>
+        {% else %}
+        <span style='color: rgb(196, 19, 13)'>{{ g }}</span>
+        {% endifequal %}    
+    {% endfor %}
+    </p>
+    <p>
+    Alltime: <span style='color: #00FF00'>{{ stats.wins }}</span> | <span style='color: rgb(196, 19, 13)'>{{ stats.loses }}</span> 
+    </p>
+</div>
+<div class="info">
+    <h2> Past tournaments: </h2>
+    {% for tournament in tournaments %}
+        <p><a href="{% url 'hs:tournament_detail' pk=tournament.pk %}"> {{ tournament.title }} </a></p>
+    {% endfor %}
+    <h2>Recent matches: </h2>
+    {% for match in matches %}
+        <p>
+            <a "{% if match.winner == player %} style='color: #00FF00;'{% endif %}" href="{% url 'hs:match_detail' pk=match.pk %}">
+                {{ match }}
+            </a>
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}

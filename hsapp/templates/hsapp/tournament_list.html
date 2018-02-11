@@ -1,0 +1,111 @@
+{% extends 'hsapp/base.html' %}
+{% block style %}
+<style>
+.tcontainer{
+    margin: auto;
+    width: 50%;
+    overflow: hidden;
+    max-width: 500px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.tl-logo {
+    border-radius: 6px;
+    width: 100%;
+    transition: all 0.3s ease-out;
+}
+.tl-logo:hover{
+    border-radius: 6px;
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+    transform:scale(1.25);
+}
+.tl-title{
+    font-size: 16px;
+    font-family: "Lucida Console", Monaco, monospace;
+    text-align:center;
+    position:absolute;
+    overflow: hidden;
+    
+    padding: 5px;
+    margin-bottom: 0;
+    width:100%;
+    bottom: 0;
+    color: white;
+    border-bottom: 1px solid black;
+    border-radius: inherit;
+    background-color: black;
+}
+.pages{
+    width: 100%;
+    margin: auto;
+    color:blueviolet;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% if messages %}
+
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% if tournaments.has_other_pages %}
+
+<div class="">
+    <ul class="pagination justify-content-center">
+    {% if tournaments.has_previous %}
+        <li class="page-item"><a style="color: #007bff;" class="page-link" href="?page={{ tournaments.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in tournaments.paginator.page_range %}
+        {% if tournaments.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+        <li class="page-item"><a style="color: #007bff;" class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if tournaments.has_next %}
+        <li class="page-item"><a style="color: #007bff;" class="page-link"href="?page={{ tournaments.next_page_number }}">&raquo;</a></li>
+    {% else %}
+        <li class="page-item disabled"><span>&raquo;</span></li>
+    {% endif %}
+    </ul>
+</div>
+
+{% endif %}
+
+{% for tournament in tournaments_future %}
+
+<div class='tcontainer'>
+    <a href="{% url 'hs:tournament_detail' pk=tournament.pk %}">
+    <img class='tl-logo' src='{{ MEDIA_URL }}/media/{{ tournament.image }}'> 
+    <h3 class='tl-title'>{{ tournament.title }}</h3>
+    </a>
+</div>
+
+{% endfor %}
+
+<hr style="max-width: 550px; border-color: white;">
+
+{% for tournament in tournaments %}
+    
+<div class='tcontainer'>
+    <a href="{% url 'hs:tournament_detail' pk=tournament.pk %}">
+    <img class='tl-logo' src='{{ MEDIA_URL }}/media/{{ tournament.image }}'> 
+    <h3 class='tl-title'>{{ tournament.title }}</h3>
+    </a>
+</div>
+    
+{% endfor %}
+
+
+
+{% endblock %}

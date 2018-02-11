@@ -1,0 +1,12 @@
+{% extends 'hsapp/base.html' %}
+
+{% block content %}
+{% for post in posts %}
+<div class='post'>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.article }}</p>
+    <h4 style='float: right;'>{{ post.date }}</h4>
+    <h6>{{ post.tags }}</h6>
+</div>
+{% endfor %}
+{% endblock %}

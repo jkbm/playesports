@@ -1,0 +1,11 @@
+{% extends 'hsapp/base.html' %}
+
+{% block content %}
+<div>
+    <h2>{{ info }}</h2>
+    
+    {% for match in matches %}
+    <p><a href="{% url 'hs:match_detail' pk=match.pk %}"> {{ match }} </a></p>
+    {% endfor %}
+</div>
+{% endblock %}

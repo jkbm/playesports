@@ -1,0 +1,100 @@
+{% extends 'hsapp/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/tournament.css' %}">
+<script> 
+$(document).ready(function(){
+    $("#slidedown-btn").click(function(){
+        $("#slidedown-div").slideDown("slow");
+    });
+});
+</script>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<div class="centered">
+    <h2 align='center'>{{ tournament.title }}</h2>
+    {% if tournament.image %}
+     <img class='tlogo' style='display: block; margin:auto;' src='{{ MEDIA_URL }}/media/{{ tournament.image }}'>
+    {% endif %}
+        <p>{{ tournament.start_date }} - {{ tournament.end_date }}</p>
+    {% if tournament.get_location %}
+        <p>{{ tournament.get_location }}</p>
+    {% endif %}
+    {% if tournament.prize %}
+        <p>Prize: ${{ tournament.prize }}</p>
+    {% endif %}
+    {% if tournament.about %}
+        <p>{{ tournament.about|linebreaks }}</p>
+    {% endif %}
+    {% if tournament.format %}
+        <p><b>Tournament format: </b>{{ tournament.format|linebreaks }}</p>
+    {% endif %}
+    <hr>
+    {% if tournament.winner %}
+        <p>Winner: <a href='{% url "hs:player_detail" pk=tournament.winner.pk %}'>{{ tournament.winner }}</a></p>
+        <img class="winner" src='{{ MEDIA_URL }}/media/{{ tournament.winner.image }}'>
+    {% else %}
+    <div class="today">
+        <p style="text-align: center; font-size: 28px"><b>{{ day }}</b></p>
+        Upcoming matches:
+        <ul style="list-style-type: none">
+        {% for match in upcoming_matches %}
+            <li><a href="{% url 'hs:match_detail' pk=match.pk %}">{{ match.short_title }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <p><a class="btn btn-info" href='{% url "hs:tournament_bracket" pk=tournament.pk %}'>Groups & Bracket</a></p>
+    <hr>
+    <div class='players'>
+        Participants:
+        {% for player in players %}
+            <p><a href="{% url 'hs:player_detail' pk=player.pk %}">
+            <img src='{{ player.country.flag }}'>{{ player.name }}</a>
+            </p>
+        {% endfor %}
+    </div>
+    <hr>
+    {% if tournament.presenters %}
+    Tournament presenters:
+        <div class='casters'>
+            {% for caster in tournament.presenters.all %}
+            <div class="caster">
+                <h5>{{ caster.get_screen_name }}</h5>
+                <img src='{{ MEDIA_URL }}/media/{{ caster.image }}'>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <hr>
+    Matches: <button id='slidedown-btn'>Show</button>
+    <div id='slidedown-div' style="display: none;">
+    {% for match in matches %}
+        {% if match.stage == 'Finals' %}
+            <div style = 'color:red;'><a href="{% url 'hs:match_detail' pk=match.pk %}" > {{match.stage}} : {{match}} </a></div>
+        {% elif match.stage == 'Semifinals' %}
+            <div style = 'color:green;'><a href="{% url 'hs:match_detail' pk=match.pk %}">{{match.stage}} : {{match}}</div>
+        {% else %}
+            <div><a href="{% url 'hs:match_detail' pk=match.pk %}">{{match.stage}} : {{match}}</a></div>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <hr>
+    <div class='stream'>
+        <h2> Stream: </h2>
+            <iframe
+            src="http://player.twitch.tv/?channel=playhearthstone&muted=true"
+            height="360"
+            width="640"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true">
+        </iframe>
+    </div>
+</div>
+{% endblock %}

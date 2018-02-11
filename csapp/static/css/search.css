@@ -1,0 +1,8 @@
+.search-results{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.search-result{
+    display: inline-block;
+}

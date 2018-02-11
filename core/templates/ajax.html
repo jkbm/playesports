@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+var previous = null;
+var current = null;
+setInterval(function() {
+    $.getJSON("{% url 'hs:tournament_rest_api' %}", {format: 'json'}, function(json) {
+        current = JSON.stringify(json);        
+        if (previous && current && previous !== current) {
+            console.log('refresh');
+            location.reload();
+        }
+        previous = current;
+    });                       
+}, 2000);   
+
+$(document).ready(function(){
+  
+    $.getJSON("{% url 'hs:tournament_rest_api' %}", {format: 'json'}, function(data){
+        
+        show = document.getElementById("demo");
+
+        var text = "";
+        for (i = 0; i < data.length; i++) {
+          console.log(data[i]); 
+          show.innerHTML += data[i]['title'] + "<br>";
+        }
+      });
+});
+</script>
+</head>
+<body>
+
+<button>Get JSON data</button>
+
+<div class="data" id="demo"></div>
+
+</body>
+</html>

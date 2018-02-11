@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Esports world</title>
+        <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico'%}"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Abril+Fatface&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/esports.css' %}">
+    </head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $(".line").fadeIn(3000);
+        });
+    </script>
+    <div class="container">
+        <h1>Choose your game:</h1>
+        <div class='line' style='display:none'>
+            <a href="{% url 'core:nopage' %}"><img class='image' src='{{ MEDIA_URL }}/media/LoLlogo.png' alt='hs-logo'></a>  
+        </div>
+        <div class='line' style='display:none'>
+            <a href="{% url 'core:nopage' %}"><img class='image' src='{{ MEDIA_URL }}/media/HotSlogo.png' alt='hs-logo'></a>  
+        </div>
+        <div class='line' style='display:none'>
+            <a href="{% url 'hs:tournament_list' %}"><img class='image' src='{{ MEDIA_URL }}/media/HSlogo.png' alt='hs-logo'></a>  
+        </div>
+        <div class='line' style='display:none'>
+            <a href="{% url 'cs:home' %}"><img class='image' src='{{ MEDIA_URL }}/media/CSGOlogo.png' alt='csgo-logo'></a>  
+        </div>
+        <div class='line' style='display:none'>
+            <a href="{% url 'core:nopage' %}"><img class='image' src='{{ MEDIA_URL }}/media/Dota2logo.png' alt='hs-logo'></a>  
+        </div>
+    </div>
+</body>
+</html>
+
+

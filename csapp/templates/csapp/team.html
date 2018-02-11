@@ -1,0 +1,34 @@
+{% extends 'csapp/base.html' %}
+{% block content %}
+<style>
+    img{
+        width: 150px;
+    }
+    .team{
+        width: 90%;
+    }
+    .players{
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .player{
+        border: 2px solid black;
+        text-align: justify;
+        margin: 10px;
+        display: inline-block;
+    }
+</style>
+<div class="team">
+<h2>{{ team.name }}</h2>
+<img src='{{ MEDIA_URL }}/media/{{ team.logo }}'>
+<div class="players">
+{% for player in players %}
+<div class="player">
+    <p>{{ player.name }}</p>
+    <img src='{{ MEDIA_URL }}/media/{{ player.image }}'>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

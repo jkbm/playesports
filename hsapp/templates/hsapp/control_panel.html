@@ -1,0 +1,26 @@
+{% extends 'hsapp/base.html' %}
+
+{% block content %}
+<div class='container'>
+    <h1> Control panel </h1>
+    <div class='panel'>
+        <div class="btn-group" role="group" aria-label="...">
+            <a href="{% url 'hs:tournament_add' %}" class="btn btn-primary">Add Tournament</a>
+            <a href="{% url 'hs:match_add' %}" class="btn btn-primary">Add Match</a>
+            <a href="{% url 'hs:player_add' %}" class="btn btn-primary" name="add-player">Add Player</a>
+            <a href="{% url 'hs:game_add' %}" class="btn btn-primary" name="add-game">Add Game</a>
+            <a href="{% url 'hs:post_add' %}" class="btn btn-primary" name="add-post">Add Article</a>
+        </div>
+        <div>
+        <form method="POST" class="cpanel-form">{% csrf_token %}
+            {{ form.as_p }}
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-primary" name="add-group">Add Group</button>
+                <button type="submit" class="btn btn-primary" name="edit-group">Edit Group</button>
+                <button type="submit" class="btn btn-primary" name="edit-tournament">Edit Tournament</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

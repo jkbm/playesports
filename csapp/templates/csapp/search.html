@@ -1,0 +1,38 @@
+{% extends 'csapp/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<style>
+    img{
+        width: 75px;
+    }
+</style>
+<h3>Search results:</h3>
+<div class="search-results">
+{% for team in teams %}
+<div class="search-result">
+    <h2>{{ team.name }} </h2>
+    <img src='{{ MEDIA_URL }}/media/{{ team.logo }}'>
+    
+    <p>{{ team.country }}</p>
+</div>
+{% endfor %}
+{% for player in players %}
+<div class="search-result">
+    <h2>{{ player.name }} </h2>
+    <img src='{{ MEDIA_URL }}/media/{{ player.image }}'>
+    
+    <p>{{ player.country }}</p>
+</div>
+{% endfor %}
+{% for tournament in tournaments %}
+<div class="search-result">
+    <h2>{{ tournament.title }} </h2>
+    <img src='{{ MEDIA_URL }}/media/{{ tournament.logo }}'>
+    
+    <p>{{ tournament.country }}</p>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

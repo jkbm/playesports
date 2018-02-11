@@ -1,0 +1,36 @@
+{% extends 'csapp/base.html' %}
+{% block content %}
+<style>
+    img{
+        max-width: 150px;
+    }
+    .team{
+        text-align: center;
+        display: inline-block;
+        margin: 5px;
+        padding: 3px;
+        background: darkblue;
+        border: 2px solid;
+        border-radius: 2px;
+        
+    }
+    .team a:hover{text-decoration: none; color: darkblue;}
+    .team:hover{
+        background: wheat;      
+    }
+    .logo{
+        height: 150px;
+    }
+</style>
+
+{% for team in teams %}
+    <div class="team">
+        <a href="{% url 'cs:team_detail' pk=team.pk %}">
+        <h2>{{ team.name }} </h2>
+        <div class="logo">
+        <img src='{{ MEDIA_URL }}/media/{{ team.logo }}'>
+        </div>
+        </a>
+    </div>
+{% endfor %}
+{% endblock %}

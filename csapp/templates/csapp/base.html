@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+    <title>Esports world - CS GO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">      
+    <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico'%}"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->     
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/ad4f6e3394.js"></script> 
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Abril+Fatface&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Local stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/csapp.css' %}">
+    <style>
+    h3{
+        margin-top: 15px;
+    }
+    </style>  
+    {% block style %}
+    {% endblock %} 
+</head>
+<body>
+    <script type="text/javascript">
+        document.getElementById("ssbutton").onclick = function () {
+            location.href = "www.google.com";
+        };
+    </script>
+    <div class="page-header">
+        <div class="logos">
+            <div class='left'><h1><a href="/" >Esports Universe - CS GO</a></h1></div>
+            <div class='right'><a style = 'text-decoration:none;' href='/hs/'><img class='main-logo' src=""></a></div>
+        </div>
+    </div>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'cs:home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cs:teams_list' %}">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <div class="search-bar">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" id="q_field" value="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search_button">Search</button>
+        </div>
+    </div>
+    </nav>    
+
+
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message }}
+                </div>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <div class="content container">
+            {% block content %}
+            {% endblock %}
+    </div>
+
+
+    <script type="text/javascript">
+        document.getElementById("search_button").onclick = function () {
+            location.href = "{% url 'cs:search' %}" + '?query='+document.getElementById('q_field').value;
+        };
+    </script>
+</body>
+</html>
+
+

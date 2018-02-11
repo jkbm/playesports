@@ -1,0 +1,26 @@
+.search-result{
+    width: 50%;
+    border: 1px solid black;
+    margin-bottom: 15px;
+    text-align: center; 
+    padding-bottom: 5px;
+
+}
+.stournament{
+    display: inline-block;
+    
+}
+.stournament img{
+    width: 100%;
+    float: right;
+}
+.search-result:hover{
+    background: rgb(87, 9, 83);
+}
+
+.splayer{
+    width: 30%;
+}
+.splayer img{
+    width: 100%;    
+}
