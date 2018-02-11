@@ -43,6 +43,6 @@ urlpatterns = [
     url(r'^api/match/(?P<pk>\d+)/$', views.MatchReadUpdateDeleteView.as_view(), name='match_rest_api'),
     url(r'^temp/$', views.temp, name='temp')
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
