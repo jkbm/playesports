@@ -13,3 +13,4 @@ users.txt
 /htmlcov
 .coverage
 *.json
+!data.json
