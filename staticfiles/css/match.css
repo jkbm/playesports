@@ -1,0 +1,30 @@
+.match_pic{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.match{
+    text-align: center;
+    margin-bottom: 150px;
+
+}
+.match h1{
+    
+}
+
+.match_pic{
+    height: 200px;
+}
+
+.winner img {
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    border-color: lawngreen;
+}
+.leftc {
+    text-align: right;
+}
+.rightc {
+    text-align: left;    
+}

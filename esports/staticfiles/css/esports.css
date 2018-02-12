@@ -1,0 +1,71 @@
+body{
+    background: blueviolet;
+    background: -webkit-linear-gradient(360deg, #6e209b, blueviolet); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(360deg, #6e209b, blueviolet); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(360deg, #6e209b, blueviolet); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(360deg, #6e209b, blueviolet);
+}
+h1{
+    color: whitesmoke;
+}
+.container{
+    margin: auto;
+    width: 70%;
+    padding-top: 10%;
+    text-align: center;
+    position: relative;
+}
+.line{
+    border: 3px solid blanchedalmond;
+    padding: 10px;  
+    display: inline-block;
+    overflow:hidden;
+}
+.image {
+    height: 100px;
+    transition: all 0.3s ease-out;
+}
+.image:hover{
+    -webkit-filter: saturate(4);
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+    transform:scale(1.5);
+    filter: saturate(4);
+}
+
+a{
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 36px;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+a:visited{
+    color: whitesmoke;
+}
+
+#test{
+    position : relative;
+    background: greenyellow;
+    height: 50px;
+    width: 50px;
+
+}
+.login{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

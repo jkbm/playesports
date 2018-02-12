@@ -1,0 +1,54 @@
+body {
+    background-color: #5dd820;
+    background: #5dd820; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #5dd820, #00bc6e); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #5dd820, #00bc6e); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #5dd820, #00bc6e); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #5dd820, #00bc6e); /* Standard syntax */
+}
+
+a:link,
+a:visited,
+a:active {
+    color: white;
+}
+
+a:hover {
+    color: wheat;
+    text-decoration: underline;
+}
+
+.stream iframe{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.winner{
+    width: 100px;
+}
+
+.today a{
+    font-size: 18px;
+    color: white;
+}
+
+.casters{
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+
+}
+.caster {
+    text-align: justify;
+    margin: 15px;
+    display: inline-block;
+}
+
+.caster img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid white;
+    width: 140px;
+    border-radius: 1px;
+}

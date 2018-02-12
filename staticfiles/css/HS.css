@@ -1,0 +1,89 @@
+body{
+    background: #834d9b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #d04ed6, #834d9b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #d04ed6, #834d9b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.content {
+    margin-top: 0;
+    padding-top: 20px;
+    width: 100%;
+}
+
+.centered {
+    margin: auto;
+    width: 70%;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+.profile_pic {
+    max-height: 300px;
+    border: 3px solid lightblue;
+}
+
+.players{
+    text-align: justify;
+    text-justify: inter-word;
+}
+.players p{
+    display: inline-block;
+}
+.player_list{
+    height: 100%;
+}
+
+.tlogo{
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+
+.tournament-form, .group-form, .match-form{
+    color: black;
+}
+
+.cpanel-form{
+    color: black;
+    padding-top: 10px;
+}
+.panel{
+    padding: 10px 0px 0px 10px;
+}
+.panel a{
+    color: white;
+}
+
+#player-search{ 
+    width: 100%; /* Full-width */
+    font-size: 26px; /* Increase font-size */
+    padding: 12px 20px 12px 20px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px;
+    color: black;
+}
+#players-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#players-list li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 22px; /* Increase the font-size */
+    color: white; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#players-list li a.header {
+    background-color: #e2e2e2; /* Add a darker background color for headers */
+    cursor: default; /* Change cursor style */
+}
+
+#players-list li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+    color: black;
+}

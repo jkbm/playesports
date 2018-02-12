@@ -1,0 +1,119 @@
+/*
+ *  Flex Layout Specifics
+*/
+.bracket{
+    padding-top: 50px;
+    float: left;
+}
+#tournament{
+    display:flex;
+    flex-direction:row;
+  }
+.round{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  width:200px;
+  list-style:none;
+  padding:0;
+}
+.round .spacer{ flex-grow:1; }
+.round .spacer:first-child,
+.round .spacer:last-child{ flex-grow:.5; }
+
+.round .game-spacer{
+  flex-grow:1;
+}
+
+/*
+  *  General Styles
+*/
+body{
+  font-family:sans-serif;
+  font-size:small;
+  padding:10px;
+  line-height:1.4em;
+  background: black;
+  color: whitesmoke;
+}
+
+h1{
+  text-align: center;
+}
+
+#tournament{
+  background: #061339;
+  color: black;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.info{
+  width: 300px;
+  float: left;
+  background: #061339;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+li.game{
+  padding-left:20px;
+  color: white;
+}
+
+li.game.winner{
+  font-weight:bold;
+  
+}
+li.game span{
+  float:right;
+  margin-right:5px;
+}
+
+li.game-top{ border-bottom:3px solid lightgrey; }
+
+li.game-spacer{ 
+  border-right:3px solid lightgrey;
+  min-height:40px;
+}
+
+li.game-bottom{ 
+  border-top:3px solid lightgrey;
+}
+  
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  padding:10px 5px;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;}
+.tg th{
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: center;
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  padding:10px 5px;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+
+a:link,
+a:visited,
+a:active {
+    color: white;
+}
+
+a:hover {
+    color: wheat;
+    text-decoration: underline;
+}

@@ -25,7 +25,6 @@ SECRET_KEY = '4jwe!p!)#&b3mk*c=at-dvplb7u9^0epw-9hp0ak^5n1zcd4ga'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ["www.jekabm.com", "127.0.0.1", "0.0.0.0"]
 
 
@@ -148,19 +147,17 @@ USE_TZ = True
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'esports/media').replace('\\', '/')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/esports/media/'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 
 # Other
 

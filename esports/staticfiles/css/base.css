@@ -1,0 +1,118 @@
+body {
+    background-color: #092859;
+    background: #092859; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #092859, #518fef); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #092859, #518fef); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #092859, #518fef); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #092859, #518fef); /* Standard syntax */
+    color: whitesmoke;
+    font-family: 'Abril+Fatface';
+    font-size: 24px;
+}
+
+nav{
+    padding-left: 20px;
+}
+
+.dropdown-menu {
+    background: none;
+    margin: 0 auto;
+    width: 100%;
+    text-align:justify;
+}
+.dropdown-inline{
+    margin-left: 10px;
+}
+.dropdown-inline 
+a:link,
+a:visited,
+a:active {
+    color: whitesmoke;
+}
+.dropdown-inline:hover {
+    background-color: lightgray;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+p{
+    font-size: 18px;
+}
+a:link,
+a:visited,
+a:active {
+    color: whitesmoke;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.page-header{
+    margin-top: 0;
+    width: 100%;
+    height: 170px;
+    border-bottom: 0;
+    margin-bottom: 0;
+    background: #360033;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.page-header h1{
+    float: left;
+    display: inline-block;
+    margin-left: 5px;
+    font-family: 'Lobster', cursive;
+    font-size: 76px;
+    vertical-align: middle;
+}
+
+.left {
+    margin-top: 10px;
+    max-width: 700px;
+    position: absolute;
+    float: left;
+
+}
+
+.left a:link,
+    a:visited,
+    a:active{
+        color: white;
+        text-decoration: none; 
+}
+
+.left a:hover{
+    text-shadow: 1px 1px 2px black, 0 0 1em #f7da1d;
+}
+
+.right {
+    max-height: 130px;
+    position: relative;
+    float:right;
+}
+
+.main-logo{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 80%;
+}
+
+h4 {
+    color:black;
+}
+
+.post{
+    display: inline-block;
+    background: lightgray;
+    color: black;
+    width: 80%;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 4px;
+}
+
+field { font-family:arial, sans-serif; border-color: #d9d9d9; border-top:solid 1px #c0c0c0; } 
+input.field{width:50px;}

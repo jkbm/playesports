@@ -1,0 +1,18 @@
+.headshot, .info {
+    display: inline-block;
+}
+.headshot {
+    top: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+.headshot p{    
+    text-align: center;
+    font-size: 25px;
+}
+.info {
+    margin-left: 50px;
+}
+.form{
+}
