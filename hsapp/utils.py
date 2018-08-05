@@ -1,4 +1,8 @@
+# HSapp/utils.py
+
 from django.db.models import Q
+from django.core.files import File 
+from .models import Match, Tournament, Player, Game, Group, Deck, Deckset
 
 import requests
 import urllib.request
@@ -6,10 +10,10 @@ import json
 import re
 import time
 from datetime import datetime
+from codecs import raw_unicode_escape_decode
 
 from bs4 import BeautifulSoup
-from .models import Match, Tournament, Player, Game, Group, Deck, Deckset
-from django.core.files import File 
+
 
 class Uploader():
     """
@@ -27,11 +31,20 @@ class Uploader():
         page = requests.get(self.link)
         soup = BeautifulSoup(page.text, 'html.parser')
         scripts = soup.find_all('script', type="text/javascript")
-        data = scripts[4].string
-        print(data[:30])
-        result = re.search('\tdata:(.*?)"1.0.0"},', data).groups()
-        result = result[0]+'"1.0.0"}'
-        jresult = json.loads(result)
+        self.data = str(scripts[1].text).strip()   
+        #result = re.search('\tdata:(.*?)"1.0.0"},', data).groups()
+        #result = result[0]+'"1.0.0"}'
+        self.data = self.data.replace("\n", " ")
+        result = re.search('data: (.*?)};', str(self.data)).groups()
+        self.ex = result
+
+
+        try:
+            jresult = json.loads(str(result)[2:])
+        except:
+            with open('HWC18.json', 'r') as f:
+                jresult = json.loads(f.read())
+                f.close()
         if self.groups:
             playoffs = jresult['stages'][1]['brackets'][0]['matches']
             self.playoffs = sorted(playoffs, key=lambda d: (d['round'], d['ordinal']))
@@ -48,23 +61,23 @@ class Uploader():
 
 
     def add_group_matches(self, tpk=15):
-        """Add group stage matches to DB"""
+        #Add group stage matches to DB
         for group in self.groups:
             self.add_matches(group['matches'], bracket_stage="Groups")
 
     def add_group(self, group):
-        """Define groups for the tournament"""
+        #Define groups for the tournament
         cgroup = Group.objects.create(tournament=self.tournament, letter=group['name'][-1])
         for p in group['rankings']['content']:
             player = Player.objects.get(name=p['competitor']['name'])
             cgroup.players.add(player)
 
     def add_playoff_matches(self, tpk=15):
-        """Add playoff matches to DB"""
+        #Add playoff matches to DB
         self.add_matches(self.playoffs)
 
     def add_matches(self, matches, bracket_stage="Playoffs"):
-        """Add matches and games from given data to DB"""
+        #Add matches and games from given data to DB
         # Add or update matches
         for match in matches:
             try:
@@ -115,7 +128,7 @@ class Uploader():
 
 
     def add_games(self, match, data):
-        """Add games from the match to DB"""
+        #Add games from the match to DB
         p1 = match.player1
         p2 = match.player2
         for g in data['games']:
@@ -129,8 +142,7 @@ class Uploader():
                                             class1=c1, class2=c2, winner=winner)  
 
     def get_players(self):
-        """Add players that participate in the tournament,
-        create them if they are not in the DB"""
+        #Add players that participate in the tournament, create them if they are not in the DB
 
         base = "esports\media\HSapp\players\\"
         for p in self.players:
@@ -143,9 +155,9 @@ class Uploader():
                 except Exception as e:
                     print(e)
                     r = requests.get("https://d2q63o9r0h0ohi.cloudfront.net/images/media/artwork/artwork1-full-e2b8aa5b1470484b8f8a67022ac2364830e8a5511ca56d6ab00dbe1785413e46fbb919bd95be8df710a6d411bb332cd212ec31190e1d3a7a2d7acc58fc1149fb.jpg")
-                with open(base+"/tmp/temp.png", "wb") as f:
+                with open(base+"\\tmp\\temp.png", "wb") as f:
                     f.write(r.content)
-                reopen = open(base+"/tmp/temp.png", "rb")
+                reopen = open(base+"\\tmp\\temp.png", "rb")
                 django_file = File(reopen)
                 try:
                     obj.country = p['competitor']['nationality']
@@ -160,8 +172,7 @@ class Uploader():
                 print('Failed' + e)
 
     def clear_nones(self):    
-        """Delete matches with undecided opponents
-        """
+        #Delete matches with undecided opponents
         none_player = Player.objects.get(name="None")
         none_matches = Match.objects.filter(Q(player1=none_player) | Q(player2=none_player),
                                             tournament=self.tournament)
@@ -230,3 +241,19 @@ def get_stats(player):
                 stats['gloses'] += 1
 
     return stats        
+
+def fill_from_text(tpk):
+
+    t = Tournament.objects.get(pk=tpk)
+    players = ['Chakki', 'Nostam', 'Talion', 'AlSkyHigh', 'chessdude123', 'Snail', 'wtybill']
+    casters = []
+    for p in players:
+        obj, created = Player.objects.get_or_create(name=p)
+        t.players.add(obj)
+    t.save()
+
+if __name__ == "__main__":
+    link = "https://playhearthstone.com/en-gb/esports/tournament/hct-world-championship-amsterdam"
+    tpk = 30
+    uploader = Uploader(link, tpk, True)
+    uploader.get_data()

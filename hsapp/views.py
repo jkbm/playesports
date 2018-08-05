@@ -14,6 +14,7 @@ from django.views import View
 from braces.views import LoginRequiredMixin
 from .extras import get_top, get_cards, get_names, add_cards
 from .utils import get_stats, Uploader
+from .misc import import_cards
 
 from .serializers import PlayerSerializer, TournamentSerializer, MatchSerializer
 from rest_framework.generics import ListCreateAPIView
@@ -354,7 +355,8 @@ def cards(request, card_set=1001):
                  '20': 'League OF Explorers', '21': 'Whispers of the Old Gods',
                  '23': 'One Night in Karazhan', '24': 'One Night in Karazhan',
                  '25': 'Mean Streets of Gadgetzan', '27': "Journey to Un'Goro",
-                 '1001': 'Knights of the Frozen Throne', }
+                 '1001': 'Knights of the Frozen Throne', '2002': "The Boomsday Project",
+                 '2003': 'The Witchwood', '2004': 'Kobolds & Catacombs', }
     CLASSES = {'12': 'Neutral', '10': 'Warrior',
                '2': 'Druid', '3': 'Hunter', '4': 'Mage', '5': 'Paladin',
                '6': 'Priest', '7': 'Rogue', '8': 'Shaman', '9': 'Warlock'}
@@ -394,7 +396,7 @@ def search(request):
                                                  "players": players,
                                                  "tournaments": tournaments})
 
-def about():
+def about(request):
     """
     About page view
     """
@@ -513,15 +515,17 @@ def temp(request):
     Temporary view
     """
     #link = "https://us.battle.net/hearthstone/en/esports/tournament/hct-summer-championship-2017"
-    link = "https://us.battle.net/hearthstone/en/esports/tournament/hct-world-championship-amsterdam"
+    link = "https://playhearthstone.com/en-gb/esports/tournament/hct-world-championship-amsterdam"
     tpk = 30
+    #import_cards()
+    """
     uploader = Uploader(link, tpk, True)
     uploader.get_data()
     uploader.clear_nones()
-    #uploader.get_players()
-    uploader.add_group_matches()
-    uploader.add_playoff_matches()
-
+    uploader.get_players()
+    #uploader.add_group_matches()
+    #uploader.add_playoff_matches()
+    """
     return render(request, 'hsapp/temp.html')
 
 """

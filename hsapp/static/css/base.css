@@ -44,6 +44,18 @@ a:active {
     color: whitesmoke;
 }
 
+.button-link{
+    background-color: antiquewhite;
+    padding: 5px;
+    border-radius: 4px; 
+    color: darkblue
+}
+.button-link:link,
+.button-link:visited,
+.button-link:active {
+    color: darkmagenta;
+}
+
 a:hover {
     text-decoration: underline;
 }

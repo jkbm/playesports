@@ -34,6 +34,9 @@ $(document).ready(function(){
     {% if tournament.format %}
         <p><b>Tournament format: </b>{{ tournament.format|linebreaks }}</p>
     {% endif %}
+    {% if tournament.official_link %}
+        <p><a class="button-link" href="{{tournament.official_link}}">Official tournament's page </a></p>
+    {% endif %}    
     <hr>
     {% if tournament.winner %}
         <p>Winner: <a href='{% url "hs:player_detail" pk=tournament.winner.pk %}'>{{ tournament.winner }}</a></p>
@@ -49,6 +52,7 @@ $(document).ready(function(){
         </ul>
     </div>
     {% endif %}
+    <hr>
     <p><a class="btn btn-info" href='{% url "hs:tournament_bracket" pk=tournament.pk %}'>Groups & Bracket</a></p>
     <hr>
     <div class='players'>

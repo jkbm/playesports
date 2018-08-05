@@ -49,6 +49,7 @@ class Tournament(models.Model):
     groups = models.BooleanField(default=False)
     about = models.TextField(null=True, blank=True)
     format = models.TextField(null=True, blank=True)
+    official_link = models.CharField(max_length=500, null=True, blank=True)
     image = models.ImageField(upload_to='hsapp/tournaments', null=True, blank=True)
 
     def __str__(self):
@@ -200,22 +201,22 @@ class Group(models.Model):
 class Card(models.Model):
 
     cardID = models.CharField(max_length=10, default='AAA_000')
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=40)
     text = models.TextField(null=True, blank=True)
     flavortext = models.TextField(null=True, blank=True)
     cost = models.PositiveSmallIntegerField()
-    card_set = models.CharField(max_length=30, null=True, blank=True)
+    card_set = models.CharField(max_length=100, null=True, blank=True)
     CLASS = models.CharField(max_length=30, null=True, blank=True)
     cardtype = models.CharField(max_length=30, null=True, blank=True)
     attack = models.PositiveSmallIntegerField(null=True, blank=True)
     health = models.PositiveSmallIntegerField(null=True, blank=True)
     rarity = models.CharField(max_length=30)
-    artist = models.CharField(max_length=30, null=True, blank=True)
+    artist = models.CharField(max_length=100, null=True, blank=True)
     collectible = models.BooleanField(default=True, blank=True)
     image = models.ImageField(upload_to='hsapp/cards', null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.name + " - " + self.card_set
 
 
 

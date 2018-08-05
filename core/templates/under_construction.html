@@ -12,6 +12,11 @@
             text-align: center;
             position: relative;
         }
+        img{
+            margin: 5px;
+            background: white;
+            border-radius: 10px;
+        }
     </style>
     <script>
         function init() {
@@ -37,5 +42,6 @@
 {% endif %}
 <img src="{{ MEDIA_URL }}/media/fun/dunder_mifflin_jackhammer.gif">
 <p id='p'>Coming <b>C</b>hristma<b>s</b> <u>2002</u>!</p>
+<p><a href="{{ back }}">Go back</a></p>
 </body>
 </html>
