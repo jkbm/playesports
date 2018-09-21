@@ -25,7 +25,7 @@ SECRET_KEY = '4jwe!p!)#&b3mk*c=at-dvplb7u9^0epw-9hp0ak^5n1zcd4ga'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["www.jekabm.com", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["www.jekabm.com", "127.0.0.1", "0.0.0.0", "playesports.herokuapp.com"]
 
 
 # Application definition
