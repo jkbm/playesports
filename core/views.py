@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from core.tasks import temp_task
+
 
 # Create your views here.
 def index(request):
-    temp_task.delay()
-
+    
     return render(request, 'index.html')
 
 def ajax(request):
