@@ -1,0 +1,9 @@
+{% extends 'csapp/base.html' %}
+{% block content %}
+
+{% for t in tournaments %}
+<h2>{{ t }}</h2>
+<img src='{{ MEDIA_URL }}/media/{{ t.image }}'>
+{% endfor %}
+
+{% endblock %}

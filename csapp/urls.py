@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^teams/$', views.teams_list, name="teams_list"),
     url(r"^teams/(?P<pk>\d+)/$", views.team_detail, name='team_detail'),
+    url(r"^tournaments/$", views.tournament_list, name="tournament_list"),
+    url(r"^tournaments/(?P<pk>\d+)/$", views.tournament_detail, name='tournament_detail'),
     url(r'^search$', views.search, name="search"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,42 @@
+<body>
+<style>
+body{
+    margin: 0;
+}
+.block{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.t-team{
+    width: 60px;
+    
+}
+.header{
+    background-color: black;
+}
+.t-teams{
+    background-color:darkcyan;
+}
+.header h2, img{
+    text-align: center;
+    margin: 0 auto;
+}
+.header p{
+    font-size: 32px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+</style>
+<div class="block header">
+<h2>{{ tournament }}</h2>
+<img src='{{ MEDIA_URL }}/media/{{ tournament.image }}'>
+<p>Venue: {{ tournament.venue }}, {{ tournament.city }}, {{ tournament.country }}</p>
+<p>Prize pool: ${{ tournament.prize }}</p>
+</div>
+<div class="block t-teams">
+    {% for team in tournament.teams.all %}
+    <img class="t-team" src='{{ MEDIA_URL }}/media/{{ team.logo }}'>
+    {% endfor %}
+</div>
+
+<body>

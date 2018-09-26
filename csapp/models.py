@@ -10,9 +10,11 @@ from django.utils import timezone
 class Team(models.Model):
     """CS GO team model"""
     name = models.CharField(max_length=200, unique=True)
+    short_name = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(null=True, blank=True)
     logo = models.ImageField(upload_to='csapp/teams',
                              null=True, blank=True)
+    team_colors = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -26,7 +28,7 @@ class Player(models.Model):
     country = CountryField(null=True, blank=True)
     team = models.ForeignKey(Team, null=True, on_delete=models.CASCADE)
     formerteams = models.ManyToManyField(Team, related_name='fteams')
-    image = models.ImageField(upload_to='csapp/layers',
+    image = models.ImageField(upload_to='csapp/players',
                               null=True, blank=True)
     comment = models.CharField(max_length=200, null=True, blank=True)
     active = models.BooleanField(default=False)

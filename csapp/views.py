@@ -26,6 +26,18 @@ def team_detail(request, pk):
     return render(request, "csapp/team.html", {"team": team,
                                                "players": players})
 
+def tournament_list(request):
+
+    tournaments = Tournament.objects.all()
+
+    return render(request, "csapp/tournaments.html", {"tournaments": tournaments})
+
+def tournament_detail(request, pk):
+
+    tournament = Tournament.objects.get(pk=pk)
+
+    return render(request, "csapp/tournament.html", {"tournament": tournament})
+
 def search(request):
     """
     Search page view

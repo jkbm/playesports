@@ -2,27 +2,40 @@
 {% block content %}
 <style>
     img{
+
         max-width: 150px;
+        max-height: 100px;
     }
     .team{
         text-align: center;
         display: inline-block;
+        overflow: hidden;
+        width: 170px;
+        height: 220px;
         margin: 5px;
+        margin-top: 20px;
         padding: 3px;
-        background: darkblue;
-        border: 2px solid;
+        background: white;
+        border: 2px solid lightslategray;
         border-radius: 2px;
-        
+               
+    }
+    .team h2{
+        color: black;
+    }
+    .team img{
+        vertical-align: 0;
     }
     .team a:hover{text-decoration: none; color: darkblue;}
     .team:hover{
-        background: wheat;      
+        background: #0c7ad4;      
     }
     .logo{
+
         height: 150px;
     }
 </style>
-
+<div class="teams">
 {% for team in teams %}
     <div class="team">
         <a href="{% url 'cs:team_detail' pk=team.pk %}">
@@ -33,4 +46,5 @@
         </a>
     </div>
 {% endfor %}
+</div>
 {% endblock %}
