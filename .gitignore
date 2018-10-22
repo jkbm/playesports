@@ -13,3 +13,11 @@ users.txt
 .coverage
 *.json
 !data.json
+*.log
+*.pot
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml

@@ -140,3 +140,19 @@ class Match(models.Model):
             
 
         return matchtitle
+
+class Post(models.Model):
+    """
+    Blog post
+    """
+
+    title = models.CharField(max_length=300)
+    article = models.TextField()
+    tags = models.CharField(max_length=500, blank=True, null=True)
+    #image = models.ImageField(null=True, blank=True)
+    date = models.DateTimeField(default=timezone.now)
+    tournament = models.ForeignKey(Tournament, null=True, blank=True, on_delete=models.CASCADE)
+    players = models.ManyToManyField(Player, blank=True)
+
+    def __str__(self):
+        return self.title

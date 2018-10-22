@@ -41,6 +41,34 @@
             <div class='right'><a style = 'text-decoration:none;' href='/hs/'><img class='main-logo' src=""></a></div>
         </div>
     </div>
+    <nav class="navbar navbar-expand-md navbar-light navbar-inverse bg-primary">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/csgo/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cs:tournament_list' %}">Tournaments</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cs:teams_list' %}">Teams</a></li>
+                <li class="nav-item"><a class="nav-link" href="/csgo/">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="/csgo/about/">About</a></li>
+              </ul>
+              <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                    <h4 class="navbar-text">Hello, {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></h4>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'hs:control_panel' %}"><span class="glyphicon glyphicon-edit"></span>Control panel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'hs:players_list' %}"><span class="glyphicon glyphicon-user"></span>Players</a></li>     
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-lock"></span>Login</a></li>
+                    {% endif %}
+            </ul>
+            <div class="input-group" style="width: 20%">
+                    <span class="input-group-btn">
+                    <button class="btn btn-success my-2 my-sm-0" id="search_button">Search</button>
+                    </span>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="q_field" value="Search">
+            </div>
+          </nav>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -258,7 +258,7 @@ class Post(models.Model):
     #image = models.ImageField(null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
     tournament = models.ForeignKey(Tournament, null=True, blank=True, on_delete=models.CASCADE)
-    players = models.ManyToManyField(Player)
+    players = models.ManyToManyField(Player, null=True, blank=True)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,13 @@
+{% extends 'csapp/base.html' %}
+{% block content %}
+
+{% for player in players %}
+    <div class="player-list">
+        <div>
+        <h4><a href="{% url 'cs:player_detail' pk=player.pk %}">{{ player }}</a></h4>
+        <p><a href="{% url 'cs:team_detail' pk=player.team.pk %}">{{ player.team }}</a></p>
+        </div>
+        <a href="{% url 'cs:player_detail' pk=player.pk %}"><img src="{{ MEDIA_URL }}/media/{{ player.image }}"></a>
+    </div>
+{% endfor %}
+{% endblock %}
