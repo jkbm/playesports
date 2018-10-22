@@ -1,6 +1,6 @@
-# Project Title
+# PlayEsports - general esports portal
 
-One Paragraph of project description goes here
+Esports portal with focus on matches and tournament tracking, news and statistics
 
 ## Getting Started
 
