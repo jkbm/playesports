@@ -108,15 +108,6 @@ h4 {
     color:black;
 }
 
-.post{
-    display: inline-block;
-    background: lightgray;
-    color: black;
-    width: 80%;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 4px;
-}
 
 .player-list{
     
@@ -141,4 +132,24 @@ h4 {
 
 .player-detail{
 
+}
+/* Blog style */
+
+.blog{
+    margin-top: 5%;
+    background-color: #092859;
+    border-radius: 5px;
+}
+
+.post{
+    
+    display: inline-block;
+    border: 1px solid white;
+    color: black;
+    width: 90%;
+    padding: 20px;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
