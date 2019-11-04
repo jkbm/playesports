@@ -155,3 +155,8 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 # Other
 
 LOGIN_REDIRECT_URL = '/'
+
+try:
+    from esports.local_settings import *
+except ImportError:
+    pass

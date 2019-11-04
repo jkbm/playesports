@@ -16,7 +16,7 @@ def ajax2(request):
 
     return render(request, 'ajax2.html')
 
-def nopage(request):
+def nopage(request, exception=None):
     back = request.META.get('HTTP_REFERER')
     return render(request, 'under_construction.html', {'back': back})
 
